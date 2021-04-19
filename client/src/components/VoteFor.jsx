@@ -4,11 +4,7 @@ import { Card, Form, Button } from 'react-bootstrap'
 
 class VoteFor extends Component {
 
-
-
 	state = { proposals: [], index: -1 }
-
-	 
 
 	componentDidMount = async () => {
 		try {
@@ -34,28 +30,21 @@ class VoteFor extends Component {
 	 
 	handleChange = (e) => {
 		
-		
 		this.setState({index: e.target.value})
 	}
 
-	handleClick = (event) => {
+	handleClick = async (event) => {
+
 		event.preventDefault()
-		
-		this.voteFor(this.state.index)
-		
-	}
 
-	voteFor = async (indexx) => {
-
-		if ( indexx === -1) return
+		if ( this.state.index === -1) return
 
 		// Interaction avec le smart contract pour ajouter un compte
-		await this.props.contract.methods.vote(indexx).send({ from: this.props.account })
+		await this.props.contract.methods.vote(this.state.index).send({ from: this.props.account })
+		
 	}
-
+ 
 	render () {
-
-
 
 		const { proposals, index } = this.state
 		return (
@@ -65,9 +54,6 @@ class VoteFor extends Component {
 						<strong>Faire un Vote</strong>
 					</Card.Header>
 					<Card.Body>
-
-					
-
 						<Form.Control as="select" value={index?index:-1} onChange={this.handleChange}>
 						<option disabled value={-1} key={-1}>select</option>
 						{proposals.map((p, i) => (

@@ -12,9 +12,6 @@ class AuthorizeAccount extends Component {
 		.send({ from: this.props.account })
 	}
 
-
-
-
 	render () {
 			return (
 			
