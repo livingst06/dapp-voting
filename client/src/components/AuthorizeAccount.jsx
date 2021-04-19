@@ -15,13 +15,6 @@ class AuthorizeAccount extends Component {
 
 
 
-	registerVoter = async (address) => {
-		// Interaction avec le smart contract pour ajouter un compte
-	}
-
-
-	
-
 	render () {
 			return (
 			
